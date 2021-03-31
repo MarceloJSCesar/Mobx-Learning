@@ -8,27 +8,56 @@ class LoginPage extends StatelessWidget {
   Scaffold build(BuildContext context) {
     return Scaffold(
       body: Observer(
-        builder: (ctx) { 
-           return Container( 
+        builder: (ctx) {
+          return Container(
+            margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _textField(labelText: 'Name', onChanged: controller.client.changeName, errorText: controller.validateName),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      color: Colors.greenAccent,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    'Mobx',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
                 _height(20),
-                _textField(labelText: 'Email', onChanged: controller.client.changeEmail, errorText: controller.validateEmail),
+                _textField(
+                    labelText: 'Name',
+                    onChanged: controller.client.changeName,
+                    errorText: controller.validateName),
                 _height(20),
-                _textField(labelText: 'Address', onChanged: controller.client.changeAddress, errorText: controller.validateAddress),
+                _textField(
+                    labelText: 'Email',
+                    onChanged: controller.client.changeEmail,
+                    errorText: controller.validateEmail),
+                _height(20),
+                _textField(
+                    labelText: 'Address',
+                    onChanged: controller.client.changeAddress,
+                    errorText: controller.validateAddress),
                 _height(40),
                 TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: controller.isValid ? MaterialStateProperty.all<Color>(Colors.red) : MaterialStateProperty.all<Color>(Colors.transparent),
-                  ),
-                  child: Text('Login'),
-                  onPressed: controller.isValid ? (){} : null),
+                    style: ButtonStyle(
+                      backgroundColor: controller.isValid
+                          ? MaterialStateProperty.all<Color>(Colors.red)
+                          : MaterialStateProperty.all<Color>(
+                              Colors.transparent),
+                    ),
+                    child: Text('Login'),
+                    onPressed: controller.isValid
+                        ? () {
+                            Navigator.pushNamed(ctx, '/home');
+                          }
+                        : null),
               ],
             ),
-           );
+          );
         },
       ),
     );
